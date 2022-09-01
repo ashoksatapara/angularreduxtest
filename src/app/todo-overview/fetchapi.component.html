@@ -1,0 +1,29 @@
+<div class="">
+    <h1 class="center">
+      Try it now!
+    </h1>
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" class="text-left p-2" novalidate>
+      <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <div class="input-group-text">
+              {{api}}
+              <input id="endpoint" type="text" class="form-control" name="endpoint" [(ngModel)]="form.endpoint"
+                #endpoint="ngModel"  placeholder="people/1/" required>
+              <div class="alert alert-danger mr-2" role="alert" *ngIf="f.submitted && endpoint.invalid">
+                endpont is required!
+              </div>
+             
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <button [disabled]="!form.endpoint" class="btn btn-success  mt-2" type="submit">Create</button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <p class="lead pad_top">Result:</p>
+    <p  *ngIf="result"> {{ (result | async) }}</p>
+  </div>
